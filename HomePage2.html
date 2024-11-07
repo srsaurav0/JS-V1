@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Toggle Button</title>
+    <style>
+        /* Basic button and icon styling */
+.favorite-button {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Basic button and icon styling */
+.favorite-button {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Style for the heart icon */
+.heart-icon {
+    font-size: 24px;  /* Larger size for the heart */
+    color: #ccc;  /* Default gray color for empty heart */
+    transition: color 0.3s ease; /* Smooth transition for color change */
+    margin-right: 8px; /* Space between the icon and text */
+}
+
+/* Active heart icon - red color when saved */
+.heart-icon.active {
+    color: red;  /* Red color when active */
+}
+
+/* Optional: styling for the "Save" text */
+.s1 {
+    font-size: 14px;
+    color: #333;
+}
+
+    </style>
+</head>
+<body>
+    <button class="favorite-button">
+        <span class="heart-icon" id="heart-icon">🤍</span> <!-- Empty heart initially -->
+        <p class="s1">Save</p>
+    </button>
+
+    <script>
+// Get the heart icon element and the button with class "favorite-button"
+const heartIcon = document.getElementById('heart-icon');
+const favoriteButton = document.querySelector('.favorite-button');
+
+// Check if the heart has been marked as favorite in localStorage
+if (localStorage.getItem('heartSaved') === 'true') {
+    heartIcon.classList.add('active');
+    heartIcon.textContent = '❤️'; // Filled heart if saved
+}
+
+// Toggle the heart icon on click and store the state in localStorage
+favoriteButton.addEventListener('click', () => {
+    heartIcon.classList.toggle('active'); // Toggle the 'active' class
+
+    // Change heart content and color
+    if (heartIcon.classList.contains('active')) {
+        heartIcon.textContent = '❤️'; // Filled heart
+        localStorage.setItem('heartSaved', 'true');
+    } else {
+        heartIcon.textContent = '🤍'; // Empty heart
+        localStorage.setItem('heartSaved', 'false');
+    }
+});
+
+    </script>
+</body>
+</html>
